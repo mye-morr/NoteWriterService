@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="narfdaddy2" Class="narfdaddy2DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=184.168.194.77;Initial Catalog=narfdaddy2;User ID=narfdaddy2" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="narfdaddy2ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="narfdaddy2.testDbItem" Member="testDbItems">
+    <Type Name="testDbItem">
+      <Column Name="numRow" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="usr" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="subcat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="item" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dialog" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0U72Ct0xuECbYvWlb5mVegAAAAACAAAAAAAQZgAAAAEAACAAAADykFzoXtX/diUYBUI6jd8bPvxqcVwcT52/NxvPj3q1UgAAAAAOgAAAAAIAACAAAADcVF3KDNmIRBUyoZ2eExiCLU7e86d0HjdeMBN+yxT5tyAAAAC37gO9/KwxT5mumj2LHk8j0RthyDboYaKzrp+BiZMt7UAAAAAPkk6fh0eqcNbmgIBZjeb8F8Pj8CZe0Svy2YVRy4uzIpGr8QVYBsHdCOEZPbyI5DaO5F1XieaRUrtvA4DmmTPL</EncryptedPassword>
+    <_PublishTargetUrl>ftp://50.62.168.157/httpdocs/NoteWriter/</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/NoteWriter.dll">
+      <publishTime>03/01/2017 17:47:01</publishTime>
+    </File>
+    <File Include="narfdaddy2.dbml">
+      <publishTime>03/01/2017 17:15:03</publishTime>
+    </File>
+    <File Include="Service1.svc">
+      <publishTime>03/01/2017 17:06:50</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/01/2017 17:23:58</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
