@@ -3,3 +3,8 @@ c:\users\michael\documents\visual studio 2015\Projects\NoteWriter\NoteWriter\bin
 c:\users\michael\documents\visual studio 2015\Projects\NoteWriter\NoteWriter\bin\NoteWriter.pdb
 c:\users\michael\documents\visual studio 2015\Projects\NoteWriter\NoteWriter\obj\Release\NoteWriter.dll
 c:\users\michael\documents\visual studio 2015\Projects\NoteWriter\NoteWriter\obj\Release\NoteWriter.pdb
+\\Mac\Home\Projects\NoteWriterService\NoteWriter\bin\NoteWriter.dll.config
+\\Mac\Home\Projects\NoteWriterService\NoteWriter\bin\NoteWriter.dll
+\\Mac\Home\Projects\NoteWriterService\NoteWriter\bin\NoteWriter.pdb
+\\Mac\Home\Projects\NoteWriterService\NoteWriter\obj\Release\NoteWriter.dll
+\\Mac\Home\Projects\NoteWriterService\NoteWriter\obj\Release\NoteWriter.pdb

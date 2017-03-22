@@ -15,7 +15,7 @@ namespace NoteWriter
     {
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "getUserItems/{sUserId}")]
-        List<wsTestDbItem> getUserItems(string sUserId);
+        List<wsNoteWriterItem> getUserItems(string sUserId);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "deleteUserItems/{sUserId}")]
@@ -26,8 +26,20 @@ namespace NoteWriter
         wsSQLResult addUserItems(Stream JSONdataStream);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "getUserTips/{sUserId}")]
+        List<wsNoteWriterItem> getUserTips(string sUserId);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "deleteUserTips/{sUserId}")]
+        wsSQLResult deleteUserTips(string sUserId);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, UriTemplate = "addUserTips")]
+        wsSQLResult addUserTips(Stream JSONdataStream);
+
+        [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "getAllUserItems")]
-        List<wsTestDbItem> getAllUserItems();
+        List<wsNoteWriterItem> getAllUserItems();
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, UriTemplate = "createTestDbItem")]

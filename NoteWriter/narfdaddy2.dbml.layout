@@ -2,10 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="narfdaddy2">
   <DataContextMoniker Name="/narfdaddy2DataContext" />
   <nestedChildShapes>
-    <classShape Id="1d5ee602-e35d-4c11-9246-f64ff67cd43d" absoluteBounds="5.375, 1.875, 2, 1.9631982421875">
-      <DataClassMoniker Name="/narfdaddy2DataContext/testDbItem" />
+    <classShape Id="14de843c-ddb8-44ba-be5b-88c1491f1e3d" absoluteBounds="1.125, 1.25, 2, 1.9631982421875">
+      <DataClassMoniker Name="/narfdaddy2DataContext/NoteWriterItem" />
       <nestedChildShapes>
-        <elementListCompartment Id="89e2f5ab-d75d-4ba9-bf26-28f80b367e04" absoluteBounds="5.39, 2.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e277d909-5cd6-4dcc-a4d3-189267a06ee7" absoluteBounds="1.1400000000000001, 1.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bab8e865-c292-441b-8e4e-0980849994fd" absoluteBounds="3.625, 1.25, 2, 1.9631982421875">
+      <DataClassMoniker Name="/narfdaddy2DataContext/NoteWriterTip" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b48dd204-1e42-4a6c-a666-e4b42cc4fc06" absoluteBounds="3.6399999999999997, 1.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -14,15 +14,15 @@ namespace NoteWriter
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-        public List<wsTestDbItem> getAllUserItems()
+        public List<wsNoteWriterItem> getAllUserItems()
         {
             try
             {
                 narfdaddy2DataContext dc = new narfdaddy2DataContext();
-                List<wsTestDbItem> results = new List<wsTestDbItem>();
-                foreach (testDbItem item in dc.testDbItems)
+                List<wsNoteWriterItem> results = new List<wsNoteWriterItem>();
+                foreach (NoteWriterItem item in dc.NoteWriterItems)
                 {
-                    results.Add(new wsTestDbItem()
+                    results.Add(new wsNoteWriterItem()
                     {
                         numRow = item.numRow,
                         usr = item.usr,
@@ -44,15 +44,15 @@ namespace NoteWriter
             }
         }
 
-        public List<wsTestDbItem> getUserItems(string sUserId)
+        public List<wsNoteWriterItem> getUserItems(string sUserId)
         {
             try
             {
                 narfdaddy2DataContext dc = new narfdaddy2DataContext();
-                List<wsTestDbItem> results = new List<wsTestDbItem>();
-                foreach (testDbItem item in dc.testDbItems.Where(s => s.usr == sUserId))
+                List<wsNoteWriterItem> results = new List<wsNoteWriterItem>();
+                foreach (NoteWriterItem item in dc.NoteWriterItems.Where(s => s.usr == sUserId))
                 {
-                    results.Add(new wsTestDbItem()
+                    results.Add(new wsNoteWriterItem()
                     {
                         numRow = item.numRow,
                         usr = item.usr,
@@ -81,10 +81,10 @@ namespace NoteWriter
             try
             {
                 narfdaddy2DataContext dc = new narfdaddy2DataContext();
-                List<wsTestDbItem> results = new List<wsTestDbItem>();
-                foreach (testDbItem item in dc.testDbItems.Where(s => s.usr == sUserId))
+                List<wsNoteWriterItem> results = new List<wsNoteWriterItem>();
+                foreach (NoteWriterItem item in dc.NoteWriterItems.Where(s => s.usr == sUserId))
                 {
-                    dc.testDbItems.DeleteOnSubmit(item);
+                    dc.NoteWriterItems.DeleteOnSubmit(item);
                     dc.SubmitChanges();
                 }
 
@@ -113,7 +113,7 @@ namespace NoteWriter
 
                 // ..then convert the string into a single "wsCustomer" record.
                 JavaScriptSerializer jss = new JavaScriptSerializer();
-                var root = jss.Deserialize<List<wsTestDbItem>>(JSONdata);
+                var root = jss.Deserialize<List<wsNoteWriterItem>>(JSONdata);
                 if (root == null)
                 {
                     // Error: Couldn't deserialize our JSON string into a "wsCustomer" object.
@@ -125,7 +125,7 @@ namespace NoteWriter
                 narfdaddy2DataContext dc = new narfdaddy2DataContext();
                 foreach (var item in root)
                 {
-                    testDbItem newCustomer = new testDbItem()
+                    NoteWriterItem newCustomer = new NoteWriterItem()
                     {
                         usr = item.usr,
                         cat = item.cat,
@@ -134,7 +134,113 @@ namespace NoteWriter
                         dialog = item.dialog
                     };
 
-                    dc.testDbItems.InsertOnSubmit(newCustomer);
+                    dc.NoteWriterItems.InsertOnSubmit(newCustomer);
+                    dc.SubmitChanges();
+                }
+
+                result.WasSuccessful = 1;
+                result.Exception = "";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.WasSuccessful = 0;
+                result.Exception = ex.Message;
+                return result;
+            }
+        }
+
+        public List<wsNoteWriterItem> getUserTips(string sUserId)
+        {
+            try
+            {
+                narfdaddy2DataContext dc = new narfdaddy2DataContext();
+                List<wsNoteWriterItem> results = new List<wsNoteWriterItem>();
+                foreach (NoteWriterTip item in dc.NoteWriterTips.Where(s => s.usr == sUserId))
+                {
+                    results.Add(new wsNoteWriterItem()
+                    {
+                        numRow = item.numRow,
+                        usr = item.usr,
+                        cat = item.cat,
+                        subcat = item.subcat,
+                        item = item.item,
+                        dialog = item.dialog
+                    });
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+                // Return any exception messages back to the Response header
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+                response.StatusDescription = ex.Message.Replace("\r\n", "");
+                return null;
+            }
+        }
+
+        public wsSQLResult deleteUserTips(string sUserId)
+        {
+            wsSQLResult result = new wsSQLResult();
+
+            try
+            {
+                narfdaddy2DataContext dc = new narfdaddy2DataContext();
+                List<wsNoteWriterTip> results = new List<wsNoteWriterTip>();
+                foreach (NoteWriterItem item in dc.NoteWriterItems.Where(s => s.usr == sUserId))
+                {
+                    dc.NoteWriterItems.DeleteOnSubmit(item);
+                    dc.SubmitChanges();
+                }
+
+                result.WasSuccessful = 1;
+                result.Exception = "";
+                return result;     // Success !
+            }
+            catch (Exception ex)
+            {
+                //  Return any exception messages back to the Response header
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+                response.StatusDescription = ex.Message.Replace("\r\n", "");
+                return null;
+            }
+        }
+
+        public wsSQLResult addUserTips(Stream JSONdataStream)
+        {
+            wsSQLResult result = new wsSQLResult();
+            try
+            {
+                // Read in our Stream into a string...
+                StreamReader reader = new StreamReader(JSONdataStream);
+                string JSONdata = reader.ReadToEnd();
+
+                // ..then convert the string into a single "wsCustomer" record.
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                var root = jss.Deserialize<List<wsNoteWriterItem>>(JSONdata);
+                if (root == null)
+                {
+                    // Error: Couldn't deserialize our JSON string into a "wsCustomer" object.
+                    result.WasSuccessful = 0;
+                    result.Exception = "Unable to deserialize the JSON data.";
+                    return result;
+                }
+
+                narfdaddy2DataContext dc = new narfdaddy2DataContext();
+                foreach (var item in root)
+                {
+                    NoteWriterTip newCustomer = new NoteWriterTip()
+                    {
+                        usr = item.usr,
+                        cat = item.cat,
+                        subcat = item.subcat,
+                        item = item.item,
+                        dialog = item.dialog
+                    };
+
+                    dc.NoteWriterTips.InsertOnSubmit(newCustomer);
                     dc.SubmitChanges();
                 }
 
@@ -161,7 +267,7 @@ namespace NoteWriter
 
                 // ..then convert the string into a single "wsCustomer" record.
                 JavaScriptSerializer jss = new JavaScriptSerializer();
-                wsTestDbItem item = jss.Deserialize<wsTestDbItem>(JSONdata);
+                wsNoteWriterItem item = jss.Deserialize<wsNoteWriterItem>(JSONdata);
                 if (item == null)
                 {
                     // Error: Couldn't deserialize our JSON string into a "wsCustomer" object.
@@ -171,7 +277,7 @@ namespace NoteWriter
                 }
 
                 narfdaddy2DataContext dc = new narfdaddy2DataContext();
-                testDbItem newCustomer = new testDbItem()
+                NoteWriterItem newCustomer = new NoteWriterItem()
                 {
                     usr = item.usr,
                     cat = item.cat,
@@ -180,7 +286,7 @@ namespace NoteWriter
                     dialog = item.dialog
                 };
 
-                dc.testDbItems.InsertOnSubmit(newCustomer);
+                dc.NoteWriterItems.InsertOnSubmit(newCustomer);
                 dc.SubmitChanges();
 
                 result.WasSuccessful = 1;
@@ -201,7 +307,7 @@ namespace NoteWriter
             try
             {
                 narfdaddy2DataContext dc = new narfdaddy2DataContext();
-                testDbItem item = dc.testDbItems.Where(s => s.numRow == Int32.Parse(TestDbItemID)).FirstOrDefault();
+                NoteWriterItem item = dc.NoteWriterItems.Where(s => s.numRow == Int32.Parse(TestDbItemID)).FirstOrDefault();
                 if (item == null)
                 {
                     // We couldn't find a [Customer] record with this ID.
@@ -210,7 +316,7 @@ namespace NoteWriter
                     return result;
                 }
 
-                dc.testDbItems.DeleteOnSubmit(item);
+                dc.NoteWriterItems.DeleteOnSubmit(item);
                 dc.SubmitChanges();
 
                 result.WasSuccessful = 1;
@@ -224,6 +330,5 @@ namespace NoteWriter
                 return result;     // Failed.
             }
         }
-
     }
 }

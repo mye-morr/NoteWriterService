@@ -30,9 +30,12 @@ namespace NoteWriter
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InserttestDbItem(testDbItem instance);
-    partial void UpdatetestDbItem(testDbItem instance);
-    partial void DeletetestDbItem(testDbItem instance);
+    partial void InsertNoteWriterItem(NoteWriterItem instance);
+    partial void UpdateNoteWriterItem(NoteWriterItem instance);
+    partial void DeleteNoteWriterItem(NoteWriterItem instance);
+    partial void InsertNoteWriterTip(NoteWriterTip instance);
+    partial void UpdateNoteWriterTip(NoteWriterTip instance);
+    partial void DeleteNoteWriterTip(NoteWriterTip instance);
     #endregion
 		
 		public narfdaddy2DataContext() : 
@@ -65,17 +68,25 @@ namespace NoteWriter
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<testDbItem> testDbItems
+		public System.Data.Linq.Table<NoteWriterItem> NoteWriterItems
 		{
 			get
 			{
-				return this.GetTable<testDbItem>();
+				return this.GetTable<NoteWriterItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<NoteWriterTip> NoteWriterTips
+		{
+			get
+			{
+				return this.GetTable<NoteWriterTip>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="narfdaddy2.testDbItem")]
-	public partial class testDbItem : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NoteWriterItems")]
+	public partial class NoteWriterItem : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -110,7 +121,189 @@ namespace NoteWriter
     partial void OndialogChanged();
     #endregion
 		
-		public testDbItem()
+		public NoteWriterItem()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numRow", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int numRow
+		{
+			get
+			{
+				return this._numRow;
+			}
+			set
+			{
+				if ((this._numRow != value))
+				{
+					this.OnnumRowChanging(value);
+					this.SendPropertyChanging();
+					this._numRow = value;
+					this.SendPropertyChanged("numRow");
+					this.OnnumRowChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_usr", DbType="VarChar(50)")]
+		public string usr
+		{
+			get
+			{
+				return this._usr;
+			}
+			set
+			{
+				if ((this._usr != value))
+				{
+					this.OnusrChanging(value);
+					this.SendPropertyChanging();
+					this._usr = value;
+					this.SendPropertyChanged("usr");
+					this.OnusrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat", DbType="VarChar(50)")]
+		public string cat
+		{
+			get
+			{
+				return this._cat;
+			}
+			set
+			{
+				if ((this._cat != value))
+				{
+					this.OncatChanging(value);
+					this.SendPropertyChanging();
+					this._cat = value;
+					this.SendPropertyChanged("cat");
+					this.OncatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_subcat", DbType="VarChar(50)")]
+		public string subcat
+		{
+			get
+			{
+				return this._subcat;
+			}
+			set
+			{
+				if ((this._subcat != value))
+				{
+					this.OnsubcatChanging(value);
+					this.SendPropertyChanging();
+					this._subcat = value;
+					this.SendPropertyChanged("subcat");
+					this.OnsubcatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_item", DbType="VarChar(50)")]
+		public string item
+		{
+			get
+			{
+				return this._item;
+			}
+			set
+			{
+				if ((this._item != value))
+				{
+					this.OnitemChanging(value);
+					this.SendPropertyChanging();
+					this._item = value;
+					this.SendPropertyChanged("item");
+					this.OnitemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog", DbType="VarChar(MAX)")]
+		public string dialog
+		{
+			get
+			{
+				return this._dialog;
+			}
+			set
+			{
+				if ((this._dialog != value))
+				{
+					this.OndialogChanging(value);
+					this.SendPropertyChanging();
+					this._dialog = value;
+					this.SendPropertyChanged("dialog");
+					this.OndialogChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NoteWriterTips")]
+	public partial class NoteWriterTip : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _numRow;
+		
+		private string _usr;
+		
+		private string _cat;
+		
+		private string _subcat;
+		
+		private string _item;
+		
+		private string _dialog;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnnumRowChanging(int value);
+    partial void OnnumRowChanged();
+    partial void OnusrChanging(string value);
+    partial void OnusrChanged();
+    partial void OncatChanging(string value);
+    partial void OncatChanged();
+    partial void OnsubcatChanging(string value);
+    partial void OnsubcatChanged();
+    partial void OnitemChanging(string value);
+    partial void OnitemChanged();
+    partial void OndialogChanging(string value);
+    partial void OndialogChanged();
+    #endregion
+		
+		public NoteWriterTip()
 		{
 			OnCreated();
 		}
