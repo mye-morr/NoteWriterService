@@ -11,7 +11,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/NoteWriter.dll">
-      <publishTime>03/21/2017 23:59:17</publishTime>
+      <publishTime>03/22/2017 02:53:39</publishTime>
     </File>
     <File Include="narfdaddy2.dbml">
       <publishTime>03/21/2017 23:34:47</publishTime>
@@ -20,7 +20,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/21/2017 21:24:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/21/2017 23:59:24</publishTime>
+      <publishTime>03/23/2017 13:47:01</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -150,6 +150,56 @@ namespace NoteWriter
             }
         }
 
+        public List<wsNoteWriterItem> getUserTipCategories(string sUserId)
+        {
+            try
+            {
+                narfdaddy2DataContext dc = new narfdaddy2DataContext();
+                List<wsNoteWriterItem> results = new List<wsNoteWriterItem>();
+                foreach (NoteWriterTip item in dc.NoteWriterTips.Where(s => s.usr == sUserId).GroupBy(s=> s.cat).Select(s => s.OrderBy(i => i.cat).First()))
+                {
+                    results.Add(new wsNoteWriterItem()
+                    {
+                        cat = item.cat,
+                    });
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+                // Return any exception messages back to the Response header
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+                response.StatusDescription = ex.Message.Replace("\r\n", "");
+                return null;
+            }
+        }
+
+        public List<wsNoteWriterItem> getUserTipSubcategories(string sUserId, string sCat)
+        {
+            try
+            {
+                narfdaddy2DataContext dc = new narfdaddy2DataContext();
+                List<wsNoteWriterItem> results = new List<wsNoteWriterItem>();
+                foreach (NoteWriterTip item in dc.NoteWriterTips.Where(s => s.usr == sUserId && s.cat == sCat).GroupBy(s => s.cat).Select(s => s.OrderBy(i => i.cat).First()))
+                {
+                    results.Add(new wsNoteWriterItem()
+                    {
+                        subcat = item.subcat,
+                    });
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+                // Return any exception messages back to the Response header
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+                response.StatusDescription = ex.Message.Replace("\r\n", "");
+                return null;
+            }
+        }
+
         public List<wsNoteWriterItem> getUserTips(string sUserId)
         {
             try

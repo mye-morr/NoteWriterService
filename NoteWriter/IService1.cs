@@ -34,6 +34,14 @@ namespace NoteWriter
         wsSQLResult deleteUserTips(string sUserId);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "getUserTipCategories/{sUserId}")]
+        List<wsNoteWriterItem> getUserTipCategories(string sUserId);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "getUserTipSubcategories/{sUserId}/{sCat}")]
+        List<wsNoteWriterItem> getUserTipSubcategories(string sUserId, string sCat);
+
+        [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, UriTemplate = "addUserTips")]
         wsSQLResult addUserTips(Stream JSONdataStream);
 

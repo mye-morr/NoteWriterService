@@ -8,3 +8,4 @@ c:\users\michael\documents\visual studio 2015\Projects\NoteWriter\NoteWriter\obj
 \\Mac\Home\Projects\NoteWriterService\NoteWriter\bin\NoteWriter.dll.config
 \\Mac\Home\Projects\NoteWriterService\NoteWriter\bin\NoteWriter.dll
 \\Mac\Home\Projects\NoteWriterService\NoteWriter\bin\NoteWriter.pdb
+\\Mac\Home\Projects\NoteWriterService\NoteWriter\obj\Debug\NoteWriter.csprojResolveAssemblyReference.cache
